@@ -1,0 +1,36 @@
+{
+  "env": "NODE_ENV",
+  "serve": {
+    "port": "PORT",
+    "host": "HOSTNAME",
+    "mode": "MODE"
+  },
+  "db": {
+    "uri": "DB_URI",
+    "database": "DB_DATABASE",
+    "username": "DB_USER",
+    "password": "DB_PASSWORD",
+    "host": "DB_HOST",
+    "dialect": "DB_DIALECT",
+    "storage": "DB_SQLITE_STORAGE"
+  },
+  "redis": {
+    "port": "REDIS_PORT",
+    "host": "REDIS_HOST",
+    "password": "REDIS_PASSWORD"
+  },
+  "s3": {
+    "bucket": "S3_BUCKET",
+    "key": "S3_KEY",
+    "secret": "S3_SECRET",
+    "basePath": "S3_BASE_PATH"
+  },
+  "facebook": {
+    "appId": "FB_APP_ID",
+    "appSecret": "FB_APP_SECRET",
+    "apiBaseUrl": "FB_API_BASE_URL"
+  },
+  "admin": {
+    "pass": "ADM_PASSWORD"
+  }
+}

@@ -1,0 +1,520 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "SnapAround",
+    "description": "SnapAround's REST API documentation",
+    "version": "1.0"
+  },
+  "consumes": [ "application/json" ],
+  "produces": [ "application/json" ],
+  "basePath": "/v1.0",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "SnapAround's Users endpoints"
+    },
+    {
+      "name": "Facebook",
+      "description": "Facebook's Graph API related endpoints",
+      "externalDocs": {
+        "description": "Facebook Developers: Graph API Documentation",
+        "url": "https://developers.facebook.com/docs/graph-api"
+      }
+    },
+    {
+      "name": "Posts",
+      "description": "Post-data related endpoints"
+    },
+    {
+      "name": "Collection",
+      "description": "User's picture collection related endpoints"
+    },
+    {
+      "name": "Location",
+      "description": "Location-related endpoints"
+    },
+    {
+      "name": "Admin",
+      "description": "Administrator's endpoints"
+    },
+    {
+      "name": "Notifications",
+      "description": "Mobile notifications related endpoints"
+    }
+  ],
+  "paths": {
+    "/notifications/apnDeviceId": {
+      "post": {
+        "short": "Sets the iOS device ID",
+        "description": "Sets the device id for notifications",
+        "tags": [ "Notifications" ],
+        "parameters": [
+          { "$ref": "#/parameters/token" },
+          { "$ref": "#/parameters/iosDeviceId" }
+        ],
+        "responses": {
+          "200": { "$ref": "#/responses/OK" },
+          "401": { "$ref": "#/responses/AuthError" }
+        }
+      }
+    },
+    "/allusers": {
+      "get": {
+        "short": "Get all registered users",
+        "description": "Admin: List all registered users",
+        "tags": [ "Users", "Admin" ],
+        "parameters": [
+          { "$ref": "#/parameters/token" }
+        ],
+        "responses": {
+          "200": { "$ref": "#/responses/UserList" },
+          "401": { "$ref": "#/responses/AuthError" }
+        }
+      }
+    },
+    "/track/:fbUserId": {
+      "get": {
+        "short": "Get an user trace",
+        "description": "Admin: List all positions for a given user",
+        "tags": [ "Users", "Admin" ],
+        "parameters": [
+          { "$ref": "#/parameters/token" },
+          { "$ref": "#/parameters/fbUserId" }
+        ],
+        "responses": {
+          "200": { "$ref": "#/responses/TrackList" },
+          "401": { "$ref": "#/responses/AuthError" }
+        }
+      }
+    },
+    "/me": {
+      "get": {
+        "short": "Your own user data",
+        "description": "Your Facebook/SnapAround user data",
+        "tags":  [ "Users", "Facebook" ],
+        "parameters": [
+          { "$ref": "#/parameters/token" }
+        ],
+        "responses": {
+          "200": { "$ref": "#/responses/SingleUser" },
+          "401": { "$ref": "#/responses/AuthError" }
+        }
+      }
+    },
+    "/friends/on": {
+      "get": {
+        "short": "Fb friends on Sa",
+        "description": "List of Facebook friends registered on SnapAround",
+        "tags": [ "Users", "Facebook" ],
+        "parameters": [
+          { "$ref": "#/parameters/token" }
+        ],
+        "responses": {
+          "200": { "$ref": "#/responses/UserList" },
+          "401": { "$ref": "#/responses/AuthError" }
+        }
+      }
+    },
+    "/friends/off": {
+      "get": {
+        "short": "Fb friends not yet on Sa",
+        "description": "List of Facebook friends not registered on SnapAround",
+        "tags": [ "Facebook" ],
+        "parameters": [
+          { "$ref": "#/parameters/token" }
+        ],
+        "responses": {
+          "200": { "$ref": "#/responses/UserList" },
+          "401": { "$ref": "#/responses/AuthError" }
+        }
+      }
+    },
+    "/allposts": {
+      "get": {
+        "short": "Get all registered posts",
+        "description": "Admin: List all posts",
+        "tags": [ "Posts", "Admin" ],
+        "parameters": [
+          { "$ref": "#/parameters/token" }
+        ],
+        "responses": {
+          "200": { "$ref": "#/responses/PostList" },
+          "401": { "$ref": "#/responses/AuthError" }
+        }
+      }
+    },
+    "/posts": {
+      "get": {
+        "short": "Get posts in a location",
+        "description": "List near hidden and visible posts on the location",
+        "tags": [ "Posts", "Location" ],
+        "parameters": [
+          { "$ref": "#/parameters/token" },
+          { "$ref": "#/parameters/lat" },
+          { "$ref": "#/parameters/lon" }
+        ],
+        "responses": {
+          "200": { "$ref": "#/responses/PostListWithHidden" },
+          "401": { "$ref": "#/responses/AuthError" },
+          "400": { "$ref": "#/responses/ParameterError" }
+        }
+      },
+      "post": {
+        "short": "Publish a new post",
+        "description": "Publish a new post at your exact location",
+        "tags": [ "Posts", "Location" ],
+        "consumes": [ "multipart/form-data" ],
+        "parameters": [
+          { "$ref": "#/parameters/token" },
+          { "$ref": "#/parameters/lat" },
+          { "$ref": "#/parameters/lon" },
+          { "$ref": "#/parameters/msg" },
+          { "$ref": "#/parameters/pic" },
+          { "$ref": "#/parameters/friends" },
+          { "$ref": "#/parameters/expires" }
+        ],
+        "responses": {
+          "201": { "$ref": "#/responses/Created" },
+          "401": { "$ref": "#/responses/AuthError" },
+          "400": { "$ref": "#/responses/ParameterError" }
+        }
+      }
+    },
+    "/collection": {
+      "get": {
+        "short": "Get your collection",
+        "description": "Get the list of your saved posts",
+        "tags": [ "Posts", "Collection" ],
+        "parameters": [
+          { "$ref": "#/parameters/token" }
+        ],
+        "responses": {
+          "200": { "$ref": "#/responses/PostList" },
+          "401": { "$ref": "#/responses/AuthError" }
+        }
+      }
+    },
+    "/collection/:postId": {
+      "post": {
+        "short": "Save a Post",
+        "description": "Save a new post with its id (x-checked with lat/lon)",
+        "tags": [ "Posts", "Collection", "Location" ],
+        "parameters": [
+          { "$ref": "#/parameters/token" },
+          { "$ref": "#/parameters/lat" },
+          { "$ref": "#/parameters/lon" },
+          { "$ref": "#/parameters/postId"}
+        ],
+        "responses": {
+          "201": { "$ref": "#/responses/Created" },
+          "401": { "$ref": "#/responses/AuthError" },
+          "400": { "$ref": "#/responses/ParameterError" },
+          "404": { "$ref": "#/responses/NotFoundError" }
+        }
+      },
+      "delete": {
+        "short": "Remove a Post",
+        "description": "Remove a Post from the collection",
+        "tags": [ "Posts", "Collection" ],
+        "parameters": [
+          { "$ref": "#/parameters/token" },
+          { "$ref": "#/parameters/postId"}
+        ],
+        "responses": {
+          "204": { "$ref": "#/responses/Deleted" },
+          "401": { "$ref": "#/responses/AuthError" },
+          "404": { "$ref": "#/responses/NotFoundError" }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "token": {
+      "name": "authentication",
+      "in": "header",
+      "description": "The facebook short lived token: `FBShort <token>` or an admin pass for admin endpoints `ADMPass <pass>`",
+      "required": true,
+      "type": "string",
+      "maxLength": 1024
+    },
+    "lat": {
+      "name": "lat",
+      "in": "query",
+      "description": "Device's latitude",
+      "required": true,
+      "type": "number",
+      "format": "double"
+    },
+    "lon": {
+      "name": "lon",
+      "in": "query",
+      "description": "Device's longitude",
+      "required": true,
+      "type": "number",
+      "format": "double"
+    },
+    "msg": {
+      "name": "msg",
+      "in": "formData",
+      "description": "Post's message/text content",
+      "type": "string",
+      "maxLength": 512
+    },
+    "pic": {
+      "name": "pic",
+      "in": "formData",
+      "description": "Post's published picture",
+      "type": "file"
+    },
+    "friends": {
+      "name": "sharedWith",
+      "in": "formData",
+      "description": "A post limited to friends listed here (ids)",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "postId": {
+      "name": "postId",
+      "in": "path",
+      "description": "Target Post's id",
+      "required": true,
+      "type": "integer",
+      "format": "int64"
+    },
+    "fbUserId": {
+      "name": "fbUserId",
+      "in": "path",
+      "description": "Target user id on Fb",
+      "required": true,
+      "type": "string"
+    },
+    "expires": {
+      "name": "expires",
+      "description": "Post's expiration date",
+      "in": "query",
+      "type": "string",
+      "format": "date-time"
+    },
+    "iosDeviceId": {
+      "name": "iosDeviceId",
+      "in": "query",
+      "description": "An iOS device id",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "responses": {
+    "SingleUser": {
+      "description": "A single SanpAround/Facebook",
+      "schema": { "$ref": "#/definitions/User" }
+    },
+    "UserList": {
+      "description": "A list of Facebook users",
+      "schema": {
+        "type": "array",
+        "items": { "$ref": "#/definitions/User" }
+      }
+    },
+    "PostList": {
+      "description": "A list of visible posts",
+      "schema": {
+        "type": "array",
+        "items": { "$ref": "#/definitions/Post" }
+      }
+    },
+    "PostListWithHidden": {
+      "description": "A list of hidden posts",
+      "schema": {
+        "description": "Lists the two kinds of posts at the same time",
+        "type": "object",
+        "required": [
+          "hidden",
+          "visible"
+        ],
+        "properties": {
+          "hidden": {
+            "description": "A list of not yet discovered posts aggregates",
+            "type": "array",
+            "items": { "$ref": "#/definitions/PostAggregate" }
+          },
+          "visible": {
+            "description": "A list of currently visible posts",
+            "type": "array",
+            "items": { "$ref": "#/definitions/Post" }
+          },
+          "myPosts":{
+            "description": "A list of my own posts",
+            "type": "array",
+            "items": { "$ref": "#/definitions/Post" }
+          }
+        }
+      }
+    },
+    "TrackList": {
+      "description": "A list of points made by the user",
+      "type": "array",
+      "items": { "$ref": "#/definitions/TrackPoint" }
+    },
+    "Created": {
+      "description": "Resource successfully created",
+      "schema": { "$ref": "#/definitions/Post" }
+    },
+    "OK": {
+      "description": "Resource OK"
+    },
+    "Deleted": {
+      "description": "Resource successfully deleted"
+    },
+    "AuthError": {
+      "description": "Authentication with Facebook failed",
+      "schema": { "$ref": "#/definitions/Error" }
+    },
+    "ParameterError": {
+      "description": "Issue with the provided parameters",
+      "schema": { "$ref": "#/definitions/Error" }
+    },
+    "NotFoundError": {
+      "description": "Resource not found",
+      "schema": { "$ref": "#/definitions/Error" }
+    }
+  },
+  "definitions": {
+    "TrackPoint": {
+      "required": [
+        "lat",
+        "lon",
+        "date"
+      ],
+      "properties": {
+        "lat": {
+          "description": "Point's latitude",
+          "type": "number",
+          "format": "double"
+        },
+        "lon": {
+          "description": "Point's longitude",
+          "type": "number",
+          "format": "double"
+        },
+        "date": {
+          "description": "Point's time",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "User": {
+      "description": "A registered user",
+      "type": "object",
+      "required": [
+        "fbUserId",
+        "name"
+      ],
+      "properties": {
+        "fbUserId": {
+          "description": "The user's facebook user id",
+          "type": "string",
+          "format": "unt64"
+        },
+        "name": {
+          "description": "The user name from facebook",
+          "type": "string",
+          "maxLength": 128
+        },
+        "pic": {
+          "description": "The user picture url from facebook",
+          "type": "string",
+          "maxLength": 512
+        }
+      }
+    },
+    "PostAggregate": {
+      "description": "A group of posts not yet accessible",
+      "type": "object",
+      "required": [
+        "count",
+        "lat",
+        "lon"
+      ],
+      "properties": {
+        "user": { "$ref": "#/definitions/User" },
+        "count": {
+          "description": "The amount of aggregated posts 1 if posted by friend",
+          "type": "integer",
+          "format": "int32"
+        },
+        "lat": {
+          "description": "Group's latitude",
+          "type": "number",
+          "format": "double"
+        },
+        "lon": {
+          "description": "Group's longitude",
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "Post": {
+      "description": "A post on which you can see the content",
+      "type": "object",
+      "required": [
+        "postId",
+        "user",
+        "lat",
+        "lon",
+        "pic"
+      ],
+      "properties": {
+        "postId": {
+          "description": "The post's unique id",
+          "type": "integer",
+          "format": "int64"
+        },
+        "user": { "$ref": "#/definitions/User" },
+        "lat": {
+          "description": "Post's latitude",
+          "type": "number",
+          "format": "double"
+        },
+        "lon": {
+          "description": "Post's longitude",
+          "type": "number",
+          "format": "double"
+        },
+        "msg": {
+          "description": "The message associated with the post",
+          "type": "string",
+          "maxLength": 512
+        },
+        "pic": {
+          "description": "The post picture url from amazon s3",
+          "type": "string",
+          "maxLength": 512
+        },
+        "expires": {
+          "description": "Expiration date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdAt": {
+          "description": "Creation date",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Error": {
+      "description": "Something you're trying to avoid",
+      "type": "object",
+      "properties": {
+        "message": {
+          "description": "Error message",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

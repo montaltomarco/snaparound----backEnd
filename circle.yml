@@ -1,0 +1,14 @@
+machine:
+  services:
+    - redis
+    - postgresql
+database:
+  post:
+    - psql -c "CREATE EXTENSION postgis;" -d circle_test
+machine:
+  node:
+    version: iojs-v1.3.0
+test:
+  override:
+    - DB_URI=postgres://ubuntu@localhost:5432/circle_test npm test
+    - npm run-script lint

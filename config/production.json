@@ -1,0 +1,8 @@
+{
+  "serve": {
+    "host": "api.example.com"
+  },
+  "s3": {
+    "bucket": "snap-around"
+  }
+}

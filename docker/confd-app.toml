@@ -1,0 +1,7 @@
+[template]
+src = ".env.tmpl"
+dest = ".env"
+keys = [
+  "/env"
+]
+reload_cmd = /usr/bin/supervisorctl restart app

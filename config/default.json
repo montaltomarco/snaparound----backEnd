@@ -1,0 +1,52 @@
+{
+  "env": "development",
+
+  "serve": {
+    "port": "3000",
+    "host": "localhost",
+    "mode": "dual"
+  },
+  "app": {
+    "logging": true,
+    "compression": true
+  },
+  "redis": {
+    "port": "6379",
+    "host": "127.0.0.1",
+    "password": null
+  },
+  "db": {
+    "uri": "postgres://snaparound@localhost:5432/snaparound",
+    "database": "snaparound",
+    "username": "snaparound",
+    "password": null,
+    "host": "localhost",
+    "dialect": "postgres",
+    "storage": null
+  },
+  "s3": {
+    "bucket": "snap-around",
+    "key": null,
+    "secret": null,
+    "basePath": ""
+  },
+  "facebook": {
+    "apiBaseUrl": "https://graph.facebook.com",
+    "apiPrefix": "/v2.3"
+  },
+  "queries": {
+    "visibleRange": 100,
+    "hiddenRange": 20000
+  },
+  "clustering": {
+    "lonSz": 1,
+    "latSz": 1,
+    "refresh": 30
+  },
+  "expire": {
+    "refresh": 10
+  },
+  "admin": {
+    "pass": "hellobitches!"
+  }
+}
