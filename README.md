@@ -59,9 +59,10 @@ Marco Montalto
 Mehdi Kitane
 Ludmila Danilescu
  
-## Special THANKS TO : 
-###Antoine KEVIN (https://github.com/Skaelv)
-###Valetin COMTE (https://github.com/Valentin-Comte)
-###Karim BEHMIDA (https://github.com/kar1m) 
+### Special THANKS TO : 
+### Robin RICARD (https://github.com/rricard)
+### Antoine KEVIN (https://github.com/Skaelv)
+### Valetin COMTE (https://github.com/Valentin-Comte)
+### Karim BEHMIDA (https://github.com/kar1m) 
 
 ####FOR THEIR HARD WORK ON THE SERVER-SIDE AND IOS-APP DEVELOPMENT on SnapAround 1.0!!!
