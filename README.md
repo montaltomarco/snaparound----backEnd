@@ -1,8 +1,8 @@
 # SnapAround
 
-1-Share pictures around the world and let everyone know about what you are enjoying.
+1- Share pictures around the world and let everyone know about what you are enjoying.
 
-2-SnapAround. Show people what's happening around you through picture.
+2- SnapAround. Show people what's happening around you through picture.
 
 ## Local install
 
@@ -37,13 +37,18 @@ $ npm start
 ## Heroku Install - In case we'll need to change the server/app
 
 1 - Create the application on Heroku and attach it to the github folder on your pc (see get started tutorial on the Heroku website)
+
 2 - Add the env variables (S3_KEY...etc) using the Dashboard
+
 3 - Install the following add-ons : heroku-postgresql + heroku-redis
+
 4 - Log into the postgresql database and run the following code : 
+
 ```shell
 $ heroku pg:psql
 create extension postgis;
 ```
+
 5 - You can now deploy the code to Heroku and everything will just WORK!!
 
 
