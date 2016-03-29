@@ -1,4 +1,4 @@
-# snapAround
+# SnapAround
 
 1-Share pictures around the world and let everyone know about what you are enjoying.
 
@@ -59,7 +59,7 @@ Marco Montalto
 Mehdi Kitane
 Ludmila Danilescu
  
-Special THANKS TO : 
+# Special THANKS TO : 
 Robin RICARD (https://github.com/rricard)
 Antoine KEVIN (https://github.com/Skaelv)
 Valetin COMTE (https://github.com/Valentin-Comte)
