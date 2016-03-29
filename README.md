@@ -56,8 +56,12 @@ $ npm run lint
 
 Marco Montalto
  ([montaltomarco0@gmail.com](mailto:montaltomarco0@gmail.com)) 
+
 Mehdi Kitane
+
 Ludmila Danilescu
+ 
+ 
  
 ### Special THANKS TO : 
 ### Robin RICARD (https://github.com/rricard)
@@ -65,4 +69,4 @@ Ludmila Danilescu
 ### Valetin COMTE (https://github.com/Valentin-Comte)
 ### Karim BEHMIDA (https://github.com/kar1m) 
 
-####FOR THEIR HARD WORK ON THE SERVER-SIDE AND IOS-APP DEVELOPMENT on SnapAround 1.0!!!
+####FOR THEIR HARD WORK ON THE SERVER-SIDE AND IOS-APP DEVELOPMENT ON SnapAround 1.0!!!
