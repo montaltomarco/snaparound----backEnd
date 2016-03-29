@@ -1,15 +1,16 @@
 # snapAround
 
-[![Circle CI](https://circleci.com/gh/rricard/snap-around.svg?style=svg&circle-token=c8555431c981b376ab27ac2b3e8414502cf25f62)](https://circleci.com/gh/rricard/snap-around)
-Share something with your friends and make them come to you
+1-Share pictures around the world and let everyone know about what you are enjoying.
+
+2-SnapAround. Show people what's happening around you through picture.
 
 ## Install
 
 Clone the repository and vagrant up/ssh:
 
 ```shell
-$ git clone https://github.com/rricard/snap-around.git
-$ cd snap-around
+$ git clone https://github.com/montaltomarco/snaparound-server.git
+$ cd snaparound-server
 $ vagrant up
 $ vagrant ssh
 $ cd /vagrant
@@ -51,8 +52,17 @@ $ npm test
 $ npm run lint
 ```
 
-## Author
+## 2016 Team
 
-Robin Ricard
- ([ricard.robin@gmail.com](mailto:ricard.robin@gmail.com)) 
+Marco Montalto
+ ([montaltomarco0@gmail.com](mailto:montaltomarco0@gmail.com)) 
+Mehdi Kitane
+Ludmila Danilescu
+ 
+Special THANKS TO : 
+Robin RICARD (https://github.com/rricard)
+Antoine KEVIN (https://github.com/Skaelv)
+Valetin COMTE (https://github.com/Valentin-Comte)
+Karim BEHMIDA (https://github.com/kar1m) 
 
+FOR THEIR HARD WORK ON THE SERVER-SIDE AND IOS-APP DEVELOPMENT on SnapAround 1.0!!!
