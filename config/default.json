@@ -15,6 +15,11 @@
     "host": "127.0.0.1",
     "password": null
   },
+  "redisHER": {
+    "port": "12609",
+    "host": "ec2-54-217-206-37.eu-west-1.compute.amazonaws.com",
+    "password": "pahous4k41ct7bfific6ninn6r3"
+  },
   "db": {
     "uri": "postgres://snaparound@localhost:5432/snaparound",
     "database": "snaparound",
