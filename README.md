@@ -31,6 +31,7 @@ FB_APP_SECRET=<FB SECRET>
 Start the server:
 
 ```shell
+$ npm install (only the first time)
 $ npm start
 ```
 
